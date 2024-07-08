@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- AutoWired를 사용하지 않는 경우 -->
+	<!-- 
+	<bean id="senderProcess" class="anno1_auto.SenderProcess">
+		<property name="sender">
+			<bean class="anno1_auto.Sender" />
+		</property>
+	</bean>
+	-->
+	
+	<!-- AutoWired 어노테이션을 사용하는 경우 -->
+	<!-- XML 사용하는 경우, 선언할 필요가 없다. -->
+	<context:component-scan base-package="anno2_resource"/> 
+</beans>

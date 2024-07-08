@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<context:component-scan base-package="anno3_etc"/>
+	
+	<bean id="data" class="anno3_etc.Process">
+		<constructor-arg value="판매부" /> <!-- 생성자를 통해 값을 할당 -->
+		<!-- 어노테이션과 xml의 우선순위는 xml이 우선한다. 그러므로 판매부가 결과로 출력된다.  -->			
+	</bean> 
+</beans>

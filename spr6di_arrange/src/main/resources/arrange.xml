@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- scope 속성에는 singleton과 prototype이 있음 -->
+	<!-- singleton을 선택한 경우, 객체를 생성할 때마다 동일한 객체를 가리킨다. -->
+	<!-- prototype을 선택한 경우, 객체를 생성할 때마다 각각의 객체는 다른 객체이다.  -->
+	<bean id="mImpl" class="pack.controller.MessageImpl" scope="singleton">
+		<!-- constructor injection -->
+		<!-- index 속성의 숫자는 매개변수의 순서를 의미한다. 0부터 시작함. -->
+		<constructor-arg index="1" type="java.lang.String">
+			<value>안녕하세요</value>
+		</constructor-arg>
+		
+		<constructor-arg index="0" type="String">
+			<value>반갑습니다</value>
+		</constructor-arg>
+		
+		<constructor-arg index="2" type="int" value="24" />
+		<constructor-arg index="3" type="pack.model.MyInfoInter" ref="my" />
+		
+		
+		<!-- setter injection -->
+		<property name="spec">
+			<value>자바 개발 전문</value>
+		</property>
+		
+		<property name="fileInter">
+			<ref bean="outFileImpl" />
+		</property>
+	</bean>
+	
+	<bean id="myInfo" name="my,good" class="pack.model.MyInfo" />
+	<bean id="outFileImpl" class="pack.other.OutFileImpl">
+		<property name="filePath" value="c:/spring/spr6di_arrange.txt" />
+	</bean>
+</beans>

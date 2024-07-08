@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<!-- AOP 입장에서 Target 생성 : 전통적인 방법 -->
+	<bean id="targetBean" class="pack.Message">
+		<property name="name" value="스프링" />
+	</bean>
+	
+	<!-- Advice(Aspect) : Target으로 weaving하기 -->
+	<bean id="myAdvice" class="aspect.Advice" />
+
+	<!-- 
+	proxy를 간접 접근 : 메소드 호출 또는 공통 기능 등을 수행 
+	애플리케이션과 AOP 설정을 직접 연계하지 않더라도 유연한 프로그래밍이 가능
+	--> 
+	<bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target">  <!-- proxyFactoryBean이 가지고 있음 -->
+			<ref bean="targetBean"/>
+		</property>
+		<property name="interceptorNames">  <!-- proxyFactoryBean이 가지고 있음 -->
+			<list>
+				<value>hiAdivisor</value> <!-- 작성한 Advisor를 전달(bean 객체의 id 속성)  -->
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- Advisor(Advice + pointcut) 생성 -->
+	<bean id="hiAdivisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="advice">
+			<ref bean="myAdvice"/> <!-- Advice Bean 객체의 id 속성 -->
+		</property>
+		<property name="pointcut">
+			<!-- 정규 표현식을 이용하여 핵심 메소드 지정 -->
+			<bean class="org.springframework.aop.support.JdkRegexpMethodPointcut">
+				<property name="pattern">
+					<value>.*sayHi*.</value> <!-- 메소드 이름에 sayHi가 포함되어 있는 경우, 패키지는 어디라도 상관 X -->
+				</property>
+			</bean>
+		</property>
+	</bean>
+</beans>

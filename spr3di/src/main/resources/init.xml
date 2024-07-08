@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+모든 설정을 자바코드로부터 분리, 외부화한다. 
+또는 어노테이션을 사용해 자바코드 내에서 DI 설정을 할 수도 있다.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- DI : Constructor Injection -->
+	<bean id="myProcess" class="pack.controller.MyProcess"> 
+		<constructor-arg>
+		<!-- 
+			<ref bean="moneyCalc"/>
+		-->
+			<ref bean="kbs"/> <!-- 객체 생성 -->
+		</constructor-arg>
+	</bean>
+	
+	<bean id="moneyCalc" name="kbs,mbc,sbs" class="pack.model.MoneyCalc" /><!-- name 속성은 여러 개 사용할 수 있다. -->
+</beans>

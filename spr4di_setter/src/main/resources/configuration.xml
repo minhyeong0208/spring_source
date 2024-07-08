@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:p="http://www.springframework.org/schema/p" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+    <!-- 방법 1 : 일반적인 setter 사용 -->   
+    <!-- MyProcess 클래스의 멤버 필드는 값이 없으므로 여기서 선언해야함.  -->
+    
+    <!-- 
+	<bean id="myProcess" class="pack.MyProcess">  class 속성을 통해 생성자를 호출한다. 
+		<property name="age" value="25" />  이렇게 선언한 property는 MyProcess.java의 setAge()를 호출하는 것과 동일하다. 멤버 필드 age를 가리키는 것이 아님.  
+		<property name="name" value="김치국" />
+		<property name="showData" ref="show" /> 
+	</bean>
+	
+	별도의 객체를 만들어 id를 참조한다. 그 이유는 setter의 매개변수로 showData 타입을 받기 때문 
+	<bean id="show" class="pack.ShowData" />  생성자에 값을 줄 것이 없으므로 바로 닫음. 
+	-->
+	
+	<!-- 방법 2: 일반적인 setter 사용 -->
+	<!-- 
+	<bean id="myProcess" class="pack.MyProcess">
+		<property name="age">
+			<value>26</value>
+		</property>
+		<property name="name">
+			<value>공기밥</value>
+		</property>
+		<property name="showData">
+			<bean class="pack.ShowData" />
+		</property>
+	</bean>
+	-->
+	
+	<!-- 방법 3 : XML namespace로 setter를 사용 -->
+	<!-- beans 태그에 xmlns:p="http://www.springframework.org/schema/p" namespace 추가 -->
+	<bean id="myProcess" class="pack.MyProcess" 
+		p:age="27"
+		p:name="주먹밥"
+		p:showData-ref="show"
+	/>
+		
+	<bean id="show" class="pack.ShowData" />
+</beans>

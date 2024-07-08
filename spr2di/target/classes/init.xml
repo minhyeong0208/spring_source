@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+모든 설정을 자바코드로부터 분리, 외부화한다. 
+또는 어노테이션을 사용해 자바코드 내에서 DI 설정을 할 수도 있다.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 추상 클래스와 인터페이스(DataDao)는 인스턴스가 불가하므로, class 속성으로 사용 불가 -->
+	
+	<!-- DI : Constructor Injection -->
+	<bean id="serviceImpl" class="controller.ProcessServiceImpl"> <!-- 기본적으로 argument가 없는 생성자를 호출. -->
+		<constructor-arg> <!-- 이 태그와 ref 태그를 작성해야 매개변수가 있는 생성자에 접근 가능 -->
+			<ref bean="dataDaoImpl"/> 
+		</constructor-arg>
+	</bean> 
+	
+    <bean name="dataDaoImpl" class="model.DataDaoImpl" />
+    <!-- 추상 클래스와 인터페이스(DataDao)는 인스턴스가 불가하므로, class 속성으로 사용 불가 -->
+</beans>

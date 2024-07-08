@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- 핵심 객체(로직) 생성 : (aop 입장에서는) target -->
+	<bean id="logicImpl" class="pack.LogicImpl">
+		<constructor-arg>
+			<ref bean="articleDao"/>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="articleDao" class="pack.ArticleDao" />
+	
+	<!-- AOP 설정 : Advice - aop namespace 사용 -->
+	<bean id="ourAdvice" class="pack.OurAdvice" />
+	
+	<aop:config>
+		<aop:aspect ref="ourAdvice"> <!-- aspect를 지정 -->
+			<!-- pointcut 표현식은 execution(패키지명.클래스명.메소드명(매개변수))을 사용 -->
+			<!--<aop:pointcut expression="execution(public void selectDataProcess1())" id="poi"/>  이와 같이 하나씩 만들 수도 있다. -->
+			<aop:pointcut expression="execution(* *..*LogicInter*.*(..)) or execution(public void selectAll()))" id="poi"/>
+			<aop:around method="kbs" pointcut-ref="poi"/> <!-- 핵심 로직 앞뒤에서 실행 -->
+		</aop:aspect>
+	</aop:config>
+	
+</beans>
