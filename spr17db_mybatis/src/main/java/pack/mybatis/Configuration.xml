@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="pack.model.SangpumDto" alias="dto" />
 	</typeAliases>
 	<environments default="dev">
-		<environment id="dev">
+		<environment id="dev1"> <!-- 여기서 여러 개의 환경을 설정할 수는 있지만, SqlSessionFactory 인스턴스마다 하나만 사용이 가능 -->
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
 				<property name="driver" value="${driver}" />

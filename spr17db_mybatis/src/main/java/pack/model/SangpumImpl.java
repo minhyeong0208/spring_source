@@ -14,6 +14,9 @@ public class SangpumImpl implements SangpumInter {
 	
 	@Override
 	public List<SangpumDto> selectDataAll() {
+		// SqlSession : 명령어를 실행하고 매퍼를 얻으며 트랜잭션 관리를 위한 인터페이스이다.
+		// SqlSession 인스턴스는 SqlSessionFactory 인스턴스를 사용해서 만든다.
+		
 		SqlSession session = factory.openSession();
 		List<SangpumDto> list = null;
 		
