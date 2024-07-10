@@ -17,13 +17,10 @@ import lombok.Setter;
 @NoArgsConstructor  // 꼭 있어야 함.
 @AllArgsConstructor
 @Entity
-@Table(name="mem")   // DB의 특정 테이블과 연결(매핑)
-public class MemDto {  // 주의! 카멜 표기법을 사용하는 경우, 자동으로 JPA에서는 다음과 같이 snake 표기법을 따른다. 원본 테이블의 이름을 Mem_Dto로 인식.	
-	@Id
-	@Column(name="num")  // 멤버 필드의 이름(number)과 DB 칼럼명(num)이 다른 경우
-	private int number;
-	
-	@Column(name="name", nullable = true)
-	private String name;
-	private String addr;  
+@Table(name="jikwon")   // DB의 특정 테이블과 연결(매핑)
+public class JikwonDto {  // 주의! 카멜 표기법을 사용하는 경우, 자동으로 JPA에서는 다음과 같이 snake 표기법을 따른다. 원본 테이블의 이름을 Mem_Dto로 인식.	
+	@Id 
+	private int jikwon_no;
+	private String jikwon_name, buser_num, jikwon_ibsail;
+
 }
