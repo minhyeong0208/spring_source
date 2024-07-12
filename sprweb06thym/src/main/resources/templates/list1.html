@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"> <!-- 템플릿 엔진, 클라이언트 브라우저가 해석할 수 없다. 순수 HTML X -->
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+타임리프 연습장<br>
+메세지 : <span th:text=${msg}>이 영역의 텍스트는 순수 HTML에만 표시</span><br><!-- th:text => 텍스트 영역에 출력하라는 의미 --><!-- 입력되어 있는 값은 툴팁 정도로 생각하면 된다. -->
+메세지2 : <b th:text=${msg2}>두 번째 메세지</b><br>
+메세지2 : <i>[[${msg2}]]</i><br>
+<b>값 결합(+ 사용) : </b>
+<b th:text="'잉글랜드 ' + ${msg2} +' 스페인'">문자열 더하기 사용</b><br>
+<b>값 결합(리터럴 치환) : </b>
+<b th:text="|잉글랜드 ${msg2} 스페인|">| 문자열 | 사용</b><br>
+
+<br>
+
+<b>지역 변수 처리(산술 연산) : </b>
+<span th:with="kor=90,eng=80"> <!-- th:with="변수명=값,..." 형태,  숫자일 경우에는 따옴표 유무 상관 X -->
+	<span th:text="|${kor} + ${eng} = ${kor + eng}|">변수는 ${} 내에서만 유효. 산술연산 : +, -, * , /</span> <!-- 숫자에 따옴표 사용 시, 문자 처리 -->
+</span>
+
+<br>
+
+<b>관계 연산 : </b>
+<span th:text="3 >= 4"></span>&nbsp;
+<span th:text="3 < 4"></span>&nbsp;
+<span th:text="a >= b"></span>&nbsp;
+<span th:text="a < b"></span>&nbsp;
+<span th:text="3 == 4"></span>&nbsp;
+<span th:text="3 != 4"></span>&nbsp;
+<span th:text="a == b"></span>&nbsp;
+<span th:text="a != b"></span><br>
+
+<hr>
+
+<b>조건 연산(if, unless) : </b>
+<span th:text="5 > 4?'크다':'작다'">삼항 연산</span><br>
+<b>조건 연산(true) : </b>
+<span th:if="5 > 4">
+	<span>조건이 참일 때, 수행</span> 
+</span>
+<span th:unless="5 == 4">
+	<span>조건이 거짓일 때, 수행</span> <!-- else문 X, unless를 사용 -->
+</span>
+
+<br>
+
+<b>switch 조건문</b>
+<div th:switch="${msg}">
+	<b th:case="|자 바🎶|" th:text="|당연히 ${msg}|"></b>
+	<i th:case="|타임리프 🎶|" th:text="|결국 ${msg}|"></i>
+	<strong th:case="*">그 외 메세지</strong>
+</div>
+
+<br>
+
+<b>상품 객체 출력 : 객체명.getter, 객체명['getter']</b><br>
+<div th:text="${product.code}">상품코드</div> <!-- getCode()와 동일 -->
+<div th:text="${product['name']}">상품명</div>
+<div th:text="${product.price}">상품가격</div>
+
+<br>
+
+<b>객체 참조 기법 : th:object</b><br>
+<div th:object="${product}">
+	<span th:text="*{code}">자식 요소에서 *{필드명(정확히는 getter)}</span>
+	<span th:text="*{name}"></span>
+	<span th:text="*{price}"></span>
+	<span>[[*{price}]]</span>
+	<span>[[*{['price']}]]</span>
+</div>
+
+<br>
+
+<!-- 주소 출력 -->
+<p th:text="${list[0]}"></p>
+<p th:text="${list[1]}"></p>
+<b>반복 처리</b><br>
+<table border='1'>
+	<tr>
+		<th>코드</th><th>품명</th><th>가격</th>
+	</tr>
+	<tr th:each="s:${list}">
+		<td>[[${s.code}]]</td>
+		<td>[[${s.name}]]</td>
+		<td>[[${s.price}]]</td>
+	</tr>
+</table>
+
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>template/show3</title>
+</head>
+<body>
+<h2>if, switch, each 연습</h2>
+<table border="1">
+	<tr>
+		<th>인덱스</th><th>아이디</th><th>상품명</th>
+	</tr>
+	<tr th:each="dto,status:${dtos}">
+		<td th:if="${status.odd}" th:text="홀수"></td> 
+		<td th:unless="${status.odd}" th:text="짝수"></td> 
+		<td th:text="${dto.id}"></td>
+		<td th:text="${dto.name}"></td>
+	</tr>
+</table>
+<br>
+<table border="1">
+	<tr>
+		<th>index</th><th>count</th><th>odd/even</th>
+	</tr>
+	<tr th:each="dto,status:${dtos}">
+		<td th:text="${status.index}"></td> 
+		<td th:text="${status.count}"></td> 
+		<td th:if="${status.odd}" th:text="홀수"></td>
+		<td th:if="${status.even}" th:text="짝수"></td>
+	</tr>
+</table>
+<br>
+<table border="1">
+	<tr>
+		<th>인덱스</th><th>아이디</th><th>상품명</th>
+	</tr>
+	<tr th:each="dto,status:${dtos}">
+		<td th:switch="${status.even}"> 
+			<span th:case="true">짝수</span>
+			<span th:case="false">홀수</span>
+		</td>
+		<td th:text="${dto.id}"></td>
+		<td th:text="${dto.name}"></td>
+	</tr>
+</table>
+<hr>
+링크 처리<br>
+<a href="/thleaf/ex1">show 1로 이동</a><br>
+<a th:href="@{/thleaf/ex1}">show 1로 이동</a><br>
+<a th:href="@{https://www.naver.com}">네이버</a><br>
+<a th:href="@{/thleaf/ex4(param1='헬로',param2='ㅂㅂ')}">타입리프의 템플릿 사용 시, 매개변수 전달방법</a><br>
+</body>
+</html>
