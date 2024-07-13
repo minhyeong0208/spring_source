@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>template/show2</title>
+</head>
+<body>
+<h2>상품 자료 여러 개 읽기</h2>
+<table border="1">
+	<tr>
+		<th>인덱스</th><th>아이디</th><th>상품명</th><th>가격</th><th>등록일</th>
+	</tr>
+	<tr th:each="dto,status:${dtos}">
+		<td th:text="${status.index}"></td> <!-- index는 키워드.  -->
+		<td th:text="${dto.id}"></td>
+		<td th:text="${dto.name}"></td>
+		<td th:text="${dto.price}"></td>
+		<td th:text="${dto.regDate}"></td>
+	</tr>
+</table>
+</body>
+</html>
