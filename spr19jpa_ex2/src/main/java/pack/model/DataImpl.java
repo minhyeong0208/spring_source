@@ -30,7 +30,7 @@ public class DataImpl implements DataInter{
 		
 		// 2개의 인덱스(부서번호, 직원 수)를 갖는 🌟배열🌟을 담은 List
 		List<Object[]> result = em.createQuery("select j.buser_num, count(j.jikwon_no) FROM JikwonDto as j group by j.buser_num", Object[].class).getResultList();
-		
+
 		em.close();
 		emf.close();
 		return result;
