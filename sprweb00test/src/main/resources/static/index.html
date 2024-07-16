@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>INDEX</title>
+</head>
+<body>
+첫 번째 컨트롤러와 Mapping<br>
+좋아요!🎶🎶<hr>
+<form name="f"></form>
+<script>
+function func(){
+	f.action="test1"; 
+	f.method="post";  //POST방식
+	f.submit();
+}
+</script>
+
+<form name="f2"></form>
+<script>
+function func2(){
+	f2.action="test2"; 
+	f2.method="post";  //POST방식
+	f2.submit();
+}
+</script>
+
+<a href="test1">Controller 만나기 1(GET)</a><br>
+<a href="javascript:func();">Controller 만나기 1(POST)</a><br>
+<a href="test2">Controller 만나기 2</a><br>
+<a href="javascript:func2();">Controller 만나기 2(POST)</a><br> <!-- @RequestMapping 어노테이션에 의해 GET 요청에 대해서만 실행 가능-->
+<a href="test3">Controller 만나기 3</a><br>
+<a href="test4">Controller 만나기 4</a><br>
+
+<hr>
+
+<form action="test5" method="post">
+	<input type="submit" value="Controller 만나기 5(POST)">
+</form>
+<form action="test6" method="post">
+	<input type="submit" value="Controller 만나기 6(POST)">
+</form>
+<form action="test7" method="post">
+	<input type="submit" value="Controller 만나기 7(POST)">
+</form>
+
+<br>
+
+<a href="test8">Data 얻기 1</a><br>
+<a href="test8_1">Data 얻기 2</a><br>
+
+<hr>
+
+두 번째 컨트롤러와 Mapping<br>
+<form action="test9" method="get">
+	<input type="submit" value="Controller 만나기 9(GET)">
+</form>
+<form action="test9" method="post">
+	<input type="submit" value="Controller 만나기 9(POST)">
+</form>
+
+<hr>
+
+<a href="/java/korea">Controller 만나기 10(korea)</a><br>
+<a href="/java/japan">Controller 만나기 10(japan)</a><br>
+<a href="china">Controller 만나기 10(china)</a><br>
+<a href="russia">Controller 만나기 10(russia)</a><br>
+</body>
+</html>

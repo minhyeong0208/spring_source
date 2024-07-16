@@ -19,9 +19,12 @@ public class DataDao extends JdbcDaoSupport {  // dataSource와 JDBC 템플릿(�
 	}
 	
 	public List<JikwonDto> selectJikList(String jik) {
-		String sql = "select jikwon_no,jikwon_name,jikwon_gen,jikwon_pay from jikwon where jikwon_jik='" + jik + "'";
+		String sql = "select jikwon_no,jikwon_name,jikwon_gen,jikwon_pay from jikwon where jikwon_jik=?";
+		
+		Object[] params = {jik};
+		
 		//return (List)getJdbcTemplate().query(sql, new ItemRowMapper());
-		return (List)getJdbcTemplate().query(sql, (ResultSet rs, int rowNum) -> {
+		return (List)getJdbcTemplate().query(sql, params, (ResultSet rs,int rowNum) -> {
 			JikwonDto dto = new JikwonDto();
 			dto.setJikwon_no(rs.getString("jikwon_no"));
 			dto.setJikwon_name(rs.getString("jikwon_name"));
