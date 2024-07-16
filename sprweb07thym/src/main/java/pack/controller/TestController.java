@@ -65,4 +65,12 @@ public class TestController {
 		model.addAttribute("arg2", param2);
 		return "show4";
 	}
+	
+	// 레이아웃
+	@GetMapping("/ex5")
+	public String method5() {
+		
+		return "show5";
+	}
+	
 }

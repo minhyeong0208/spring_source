@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http//www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+
+<h2>SHOW 5 (레이아웃 결과)</h2>
+<div layout:fragment="content">
+	<table border="1">
+		<thead>
+			<tr>
+				<th>번호</th><th>종류</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td><td>김밥</td>
+			</tr>
+			<tr>
+				<td>2</td><td>비빔밥</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</html>
