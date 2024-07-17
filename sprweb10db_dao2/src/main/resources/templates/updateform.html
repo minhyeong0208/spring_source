@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>templates/updateform.html</title>
+</head>
+<body>
+<h3>회원 정보 수정</h3>
+<form th:action="@{/update}" method="post">
+	아이디 : [[${member.id}]]<br>
+	<input type="hidden" name="id" th:value="${member.id}"> <!-- 소스 보기하면 name과 id 속성을 작성하지 않아도 자동적으로 만들어준다. -->
+	비밀번호 : <input type="text" name="passwd" th:value="${member.passwd}"><br>
+	이 름 : <input type="text" name="name" th:value="${member.name}"><br><br>
+	<input type="submit" value="변경">
+	<input type="button" value="이 전" onclick="history.back()">
+</form>
+</body>
+</html>

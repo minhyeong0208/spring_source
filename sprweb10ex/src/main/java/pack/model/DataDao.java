@@ -19,9 +19,15 @@ public class DataDao extends JdbcDaoSupport {  // dataSource와 JDBC 템플릿(�
 	}
 	
 	public List<JikwonDto> selectJikList(String jik) {
-		String sql = "select jikwon_no,jikwon_name,jikwon_gen,jikwon_pay from jikwon where jikwon_jik='" + jik + "'";
+		String sql = "select jikwon_no,jikwon_name,jikwon_gen,jikwon_pay from jikwon where jikwon_jik=?";
 		//return (List)getJdbcTemplate().query(sql, new ItemRowMapper());
-		return (List)getJdbcTemplate().query(sql, (ResultSet rs, int rowNum) -> {
+		
+		// 바인딩 변수 배열
+		Object[] 파라미터 = {jik};
+		// 바인딩 변수의 타입 배열
+		int[] argTypes = {java.sql.Types.VARCHAR};
+		
+		return (List)getJdbcTemplate().query(sql, 파라미터, argTypes, (ResultSet rs, int rowNum) -> {
 			JikwonDto dto = new JikwonDto();
 			dto.setJikwon_no(rs.getString("jikwon_no"));
 			dto.setJikwon_name(rs.getString("jikwon_name"));
@@ -29,17 +35,5 @@ public class DataDao extends JdbcDaoSupport {  // dataSource와 JDBC 템플릿(�
 			dto.setJikwon_pay(rs.getString("jikwon_pay"));
 			return dto;
 		});
-	}
-	
-	class ItemRowMapper implements RowMapper<Object> {
-		@Override
-		public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
-			JikwonDto dto = new JikwonDto();
-			dto.setJikwon_no(rs.getString("jikwon_no"));
-			dto.setJikwon_name(rs.getString("jikwon_name"));
-			dto.setJikwon_gen(rs.getString("jikwon_gen"));
-			dto.setJikwon_pay(rs.getString("jikwon_pay"));
-			return dto;
-		}
 	}
 }

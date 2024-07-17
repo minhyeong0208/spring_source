@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>DB 결과 출력 페이지</title>
+</head>
+<body>
+<h3>🎶상품 목록(@MVC : MyBatis 사용)🎶</h3>
+<table border="1">
+	<th:block th:if="${datas.size > 0}">
+	<tr>
+		<th>인덱스</th><th>코드</th><th>품명</th><th>수량</th><th>단가</th>
+	</tr>
+	<tr th:each="data, numStatus:${datas}">
+		<td th:text="${numStatus.count}">인덱스</td>
+		<td th:text="${data.code}"></td>
+		<td th:text="${data.sang}"></td>
+		<td>[[${data.su}]]</td>
+		<!-- #numbers.formatInteger(숫자, 자릿수, 구분자) -->
+		<td>[[${#numbers.formatInteger(data.dan,3,'COMMA')}]]</td>
+	</tr>
+	</th:block>
+	
+	<tr>
+		<td colspan="5">
+			<form th:action="@{/search}" method="get">
+				검색 상품명 : <input type="text" name="searchValue">
+				<input type="submit" value="검색">
+			</form>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="5" th:text="|건수 : ${datas.size}|">건수</td>
+	</tr>
+</table>
+</body>
+</html>
