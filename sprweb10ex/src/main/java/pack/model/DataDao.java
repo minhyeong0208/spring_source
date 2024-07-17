@@ -20,6 +20,7 @@ public class DataDao extends JdbcDaoSupport {  // dataSource와 JDBC 템플릿(�
 	
 	public List<JikwonDto> selectJikList(String jik) {
 		String sql = "select jikwon_no,jikwon_name,jikwon_gen,jikwon_pay from jikwon where jikwon_jik=?";
+<<<<<<< HEAD
 		//return (List)getJdbcTemplate().query(sql, new ItemRowMapper());
 		
 		// 바인딩 변수 배열
@@ -28,6 +29,13 @@ public class DataDao extends JdbcDaoSupport {  // dataSource와 JDBC 템플릿(�
 		int[] argTypes = {java.sql.Types.VARCHAR};
 		
 		return (List)getJdbcTemplate().query(sql, 파라미터, argTypes, (ResultSet rs, int rowNum) -> {
+=======
+		
+		Object[] params = {jik};
+		
+		//return (List)getJdbcTemplate().query(sql, new ItemRowMapper());
+		return (List)getJdbcTemplate().query(sql, params, (ResultSet rs,int rowNum) -> {
+>>>>>>> c2e7be3d990ff08f0878ac0880bb1f4e47e5b1f3
 			JikwonDto dto = new JikwonDto();
 			dto.setJikwon_no(rs.getString("jikwon_no"));
 			dto.setJikwon_name(rs.getString("jikwon_name"));
