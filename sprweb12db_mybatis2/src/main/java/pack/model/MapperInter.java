@@ -17,9 +17,9 @@ public interface MapperInter {
 	List<MemberDto> selectAll();
 	
 	@Select("SELECT * FROM mem WHERE num=#{num}")
-	List<MemberDto> selectPart(String num);
+	MemberDto selectPart(String num);
 	
-	@Insert("INSERT into mem values(#{num},#{name},#{addr}")
+	@Insert("INSERT into mem values(#{num},#{name},#{addr})")
 	int insertData(MemberBean bean);
 	
 	@Update("UPDATE mem set name=#{name},addr=#{addr} WHERE num=#{num}")

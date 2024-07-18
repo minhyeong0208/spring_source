@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>templates/update.html</title>
+</head>
+<body>
+<h3 style="background-color: #A9F5BC">회원 자료 수정</h3>
+<form th:action="@{/update}" method="post" th:object="${data}">
+번호 : <span th:text="${data.num}">번호</span><br><!-- 데이터를 출력할 때는 th:text="${data.num} -->
+<input type="hidden" th:field="*{num}">
+이름 : <input type="text" th:field="*{name}"><br><!-- 서버에서 받아올 때는 th:field="*{name} -->
+주소 : <input type="text" th:field="*{addr}"><br>
+<input type="submit" value="등록">
+</form>
+</body>
+</html>
