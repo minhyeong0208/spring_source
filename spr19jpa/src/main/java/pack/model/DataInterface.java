@@ -4,4 +4,5 @@ import java.util.List;
 
 public interface DataInterface {
 	List<MemDto> selectDataAll();
+	List<GogekDto> selectDataAll2();
 }

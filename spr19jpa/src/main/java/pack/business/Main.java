@@ -11,5 +11,7 @@ public class Main {
 	
 		BusinessInter inter = (BusinessInter)context.getBean("businessImpl");
 		inter.dataPrint();
+		
+		
 	}
 }

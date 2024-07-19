@@ -86,5 +86,12 @@ public class Sprweb14jpaApplication {
 		for(ProductVo vo6: list6) {
 			System.out.println(vo6.getCode() + " " + vo6.getSang() + " " + vo6.getSu() + " " + vo6.getDan());
 		}
+		
+		// 20240719
+		System.out.println("Native SQL");
+		List<ProductVo> list7 = repository.findAllData2();  // findAllData2() 메소드는 직접 만든 메소드
+		for(ProductVo vo7: list7) {
+			System.out.println(vo7.getCode() + " " + vo7.getSang() + " " + vo7.getSu() + " " + vo7.getDan());
+		}
 	}
 }

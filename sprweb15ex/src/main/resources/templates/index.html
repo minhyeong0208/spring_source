@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>templates/index.html</title>
+</head>
+<body>
+<form th:action="@{/jikwondb}" method="get">
+	직급 입력 : <input type="text" name="jik">
+	<input type="submit" value="확인">
+</form>
+</body>
+</html>

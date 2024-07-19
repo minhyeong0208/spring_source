@@ -25,15 +25,15 @@ public class SenderProcess {
 	// 위에서 만들어 놓은 인스턴스 주소가 field 값으로 전달된다. ?
 	
 	@Autowired  // 해당 어노테이션이 이름으로 찾는 게 아니라 타입으로 찾으므로 에러가 발생한다!
-	@Qualifier("sender2")  // senderInter 타입이 두 개가 있는데 sender 객체를 호출한다는 의미!
-	private SenderInter senderInter;  // Sender 인스턴스의 주소를 넘겨주는데 Sender 클래스의 주소를 이곳에 와이어링함.
+	@Qualifier("sender")  // senderInter 타입이 두 개가 있는데 sender 객체를 호출한다는 의미!
+	private Sender sender;  // Sender 인스턴스의 주소를 넘겨주는데 Sender 클래스의 주소를 이곳에 와이어링함.
 	
-/*	
-	@Autowired  // setter injection : 코드가 장황해짐.
-	public void setSender(Sender sender) {
-		this.sender = sender;
-	}
-	
+		
+	//@Autowired  // setter injection : 코드가 장황해짐.
+//	public void setSender(Sender sender) {
+//		this.sender = sender;
+//	}
+	/*
 	@Autowired  // constructor injection : 불변성과 테스트가 편하지만 생성자가 많아질 수 있음.
 	public SenderProcess(Sender sender) {
 		this.sender = sender;
@@ -44,6 +44,6 @@ public class SenderProcess {
 	}
 */	
 	public void displayData() {
-		senderInter.show();
+		sender.show();
 	}
 }

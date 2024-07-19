@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import pack.model.ProductModel;
 
-@Controller
+
 public class ProductController {
 	
 	@Autowired

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>DB 결과 출력 페이지</title>
+</head>
+<body>
+<h3>🎶직원 목록🎶</h3>
+<table border="1">
+	<tr>
+		<th>사번</th><th>직원명</th><th>성별</th><th>연봉</th>
+	</tr>
+	<th:block th:if="${datas.size > 0}">
+	<tr th:each="data:${datas}">
+		<td th:text="${data.jikwon_no}"></td>
+		<td th:text="${data.jikwon_name}"></td>
+		<td th:text="${data.jikwon_gen}"></td>
+		<td th:text="${data.jikwon_pay}"></td>
+	</tr>
+	</th:block>
+	<tr>
+		<td colspan="4" th:text="|인원수 : ${datas.size}명|">
+	</tr>
+</table>
+</body>
+</html>

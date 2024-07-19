@@ -104,4 +104,19 @@ public class DataImpl implements DataInterface {
 		System.out.println(cla.getSimpleName());
 		return em.createQuery("select e from " + cla.getSimpleName() + " e", cla).getResultList();  // 테이블에 대한 별명을 'e'로 설정
 	}
+	
+	
+	@Override
+	public List<GogekDto> selectDataAll2() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");  // DB 연결 정보 : 인수 값은 persistence.xml의 <persistence-unit name="hello"> name 속성에 해당
+		EntityManager em = emf.createEntityManager(); 
+
+		List<GogekDto> list = null;
+		list = findAll(em, GogekDto.class); // 두 번째 인자로 엔티티 클래스 전달한다.
+		for(GogekDto g : list) {
+			System.out.println(g.getNo() + " " + g.getName() + " " + g.getTel());
+		}
+		
+		return list;
+	}
 }
