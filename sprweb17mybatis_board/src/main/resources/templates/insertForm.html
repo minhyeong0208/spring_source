@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>templates/insertForm.html</title>
+</head>
+<body>
+<h3 style="background-color: #A9F5BC">글쓰기</h3>
+<form th:action="@{insert}" method="post">
+<table>
+	<tr>
+		<td>작성자</td>
+		<td>
+			<input type="text" name="author" size="48">
+		</td>
+	</tr>
+	<tr>
+		<td>글제목</td>
+		<td>
+			<input type="text" name="title" size="48">
+		</td>
+	</tr>
+	<tr>
+		<td>글내용</td>
+		<td>
+			<textarea rows="5" cols="50" name="content"></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>
+			<input type="submit" value="저장">
+		</td>
+	</tr>
+</table>
+</form>
+</body>
+</html>

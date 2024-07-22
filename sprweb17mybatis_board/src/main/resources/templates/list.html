@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>templates/list.html</title>
+</head>
+<body>
+<h3 style="background-color: #A9F5BC">글 목록(미니 게시판)</h3>
+<div>
+<a th:href="@{insert}">➕글 쓰기</a>
+</div>
+<table border="1">
+	<tr>
+		<th>번호</th><th>글제목</th><th>작성자</th><th>조회수</th>
+	</tr>
+	<!-- <th:block th:if="${list.size > 0}"> -->
+	<tr th:each="data:${list}">
+		<td th:text="${data.num}">num</td>
+		<td>
+			<a th:href="@{/detail(num=${data.num})}" th:text="${data.title}">title</a>
+		</td>
+		<td th:text="${data.author}">author</td>
+		<td th:text="${data.readcnt}">readcnt</td>
+	</tr>
+	<!-- </th:block> -->
+	<!-- 검색 -->
+	<tr>
+		<td colspan="4">
+			<form th:action="@{search}" method="post">
+				검색 대상:
+				<select name="searchName">
+					<option value="author" selected="selected">작성자</option>
+					<option value="title">글제목</option>
+				</select>
+				<input type="text" name="searchValue">
+				<input type="submit" value="검색">
+			</form>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

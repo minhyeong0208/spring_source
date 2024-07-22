@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>templates/search</title>
+</head>
+<body>
+	<h3>부서별 직원 등급</h3>
+	<form th:action="@{jikwon}" method="get">
+		부서명 : 
+		<select name="searchName">
+			<option value="10" selected="selected">총무부</option>
+			<option value="20">영업부</option>
+			<option value="30">전산부</option>
+			<option value="40">관리부</option>
+		</select>
+		<br>
+		평가 등급
+		<input type="radio" name="grade" checked="checked">전체
+		<input type="radio" name="grade" value="a">a
+		<input type="radio" name="grade" value="b">b
+		<input type="radio" name="grade" value="c">c
+		<br>
+		<input type="submit" value="확인">
+	</form>
+</body>
+</html>

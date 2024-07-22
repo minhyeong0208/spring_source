@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>templates/error.html</title>
 </head>
 <body>
-에러 발생🚫
+에러 발생🚫 : 원인은 [[${msg}]]
 <hr>
 <a th:href="@{/list}">회원목록 보기</a>
 </body>

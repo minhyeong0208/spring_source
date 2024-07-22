@@ -19,7 +19,7 @@ public class DataProcess {
 		return list;
 	}
 	
-	// 추가
+	// 회원 추가
 	public String insert(MemBean bean) {
 		// num 자동 증가
 		// int max = repository.findByMaxNum();
@@ -39,13 +39,40 @@ public class DataProcess {
 				mem.setAddr(bean.getAddr());
 				mem = repository.save(mem);
 				System.out.println("mem : " + mem);
-				return "등록 완료";
+				return "성공";
 			} catch (Exception e2) { 
 				return "입력 오류 : " + e2.getMessage();
 			}
 		}
 	}
+	
+	// 하나의 레코드 읽기 : 수정, 삭제에서 사용
+	public Mem getData(String num) {
+		Mem mem = repository.findByNum(num);
+		return mem;
+	}
+	
 	// 수정
+	public String update(MemBean bean) {
+		try {  // insert 메소드 내 catch 아래 try문 가져옴
+			Mem mem = new Mem();
+			mem.setNum(bean.getNum());
+			mem.setName(bean.getName());
+			mem.setAddr(bean.getAddr());
+			repository.save(mem);
+			return "성공";
+		} catch (Exception e2) { 
+			return "수정 오류 : " + e2.getMessage();
+		}
+	}
 	
 	// 삭제
+	public String delete(int num) {
+		try {
+			repository.deleteById(num);
+			return "성공";
+		} catch (Exception e2) { 
+			return "삭제 오류 : " + e2.getMessage();
+		}
+	}
 }
