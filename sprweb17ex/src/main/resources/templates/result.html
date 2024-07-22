@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table>
+<table border="1">
 	<tr>
 		<th>사번</th><th>이름</th><th>직급</th><th>연봉</th><th>평가</th>
 	</tr>
@@ -16,6 +16,8 @@
 		<td th:text="${data.jikwon_pay}">jikwon_pay</td>
 		<td th:text="${data.jikwon_rating}">jikwon_rating</td>
 	</tr>
+	
 </table>
+<span th:text="| 평균 : ${#numbers.formatDecimal(#aggregates.sum(list.![jikwon_pay])*1.0 / #lists.size(list), 1, 1)}|"></span>
 </body>
 </html>

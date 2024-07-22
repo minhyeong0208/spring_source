@@ -8,7 +8,7 @@
 	<h3>부서별 직원 등급</h3>
 	<form th:action="@{jikwon}" method="get">
 		부서명 : 
-		<select name="searchName">
+		<select name="buser_num">
 			<option value="10" selected="selected">총무부</option>
 			<option value="20">영업부</option>
 			<option value="30">전산부</option>
@@ -16,10 +16,10 @@
 		</select>
 		<br>
 		평가 등급
-		<input type="radio" name="grade" checked="checked">전체
-		<input type="radio" name="grade" value="a">a
-		<input type="radio" name="grade" value="b">b
-		<input type="radio" name="grade" value="c">c
+		<input type="radio" name="jikwon_rating" checked="checked" value="all">전체
+		<input type="radio" name="jikwon_rating" value="a">a
+		<input type="radio" name="jikwon_rating" value="b">b
+		<input type="radio" name="jikwon_rating" value="c">c
 		<br>
 		<input type="submit" value="확인">
 	</form>

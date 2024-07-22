@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 @Entity  // JPA 의존성 추가했기 때문에 사용 가능, 테이블명 전달 x
-@Table(name = "product")
+@Table(name = "product1")
 public class ProductVo {
 	@Id
 	@Column(name="code")

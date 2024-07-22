@@ -9,7 +9,7 @@ import pack.controller.JikwonBean;
 
 @Mapper
 public interface DataMapInterface {
-
-	List<Jikwon> selectSearch(String buser_num, String jikwon_rating);
+	List<Jikwon> selectList(); 
+	List<Jikwon> selectSearch(JikwonBean bean);
 	
 }

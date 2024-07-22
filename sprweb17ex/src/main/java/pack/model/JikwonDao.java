@@ -11,14 +11,18 @@ import pack.controller.JikwonBean;
 
 @Repository
 public class JikwonDao {
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	public DataMapInterface mapInterface;
 	
+	public List<Jikwon> selectAll() {
+		List<Jikwon> slist = mapInterface.selectList();
+		return slist;
+	}
+	
 	// 검색
-	public List<Jikwon> search(String buser_num, String jikwon_rating) {
-		List<Jikwon> slist = mapInterface.selectSearch(buser_num, jikwon_rating);
+	public List<Jikwon> search(JikwonBean bean) {
+		List<Jikwon> slist = mapInterface.selectSearch(bean);
 		return slist;
 	}
 }
