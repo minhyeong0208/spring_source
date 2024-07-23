@@ -64,9 +64,10 @@ public class BoardDao {
 	// 삭제
 	public boolean deleteData(BoardBean bean) {
 		boolean b = false;
+		//int re = mapInterface.delete(Integer.toString(bean.getNum()));
 		int re = mapInterface.delete(Integer.toString(bean.getNum()));
-		
 		if(re > 0) b = true;
+		
 		return b;
 	}
 }

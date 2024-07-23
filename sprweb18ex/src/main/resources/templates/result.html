@@ -14,7 +14,7 @@
 		<td th:text="${data.jikwon_name}">jikwon_name</td>
 		<td th:text="${data.jikwon_jik}">jikwon_jik</td>
 		<td th:text="${data.jikwon_pay}">jikwon_pay</td>
-		<td th:text="${data.jikwon_rating}">jikwon_rating</td>
+		<td th:text="${data.rating}">jikwon_rating</td>
 	</tr>
 </table>
 <span th:text="| 평균 : ${#numbers.formatDecimal(#aggregates.sum(list.![jikwon_pay])*1.0 / #lists.size(list), 1, 0)}|"></span>
