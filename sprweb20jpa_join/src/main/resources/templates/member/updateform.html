@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>templates/member/updateform.html</title>
+</head>
+<body>
+<h3 style="background-color: #E1F5A9">회원 수정 폼</h3>
+<form th:action="@{/member/update}" method="post">
+	번호 : <input type="text" name="num" th:value="${dto.num}" readonly="readonly"><br>
+	이름 : <input type="text" name="name" th:value="${dto.name}"><br>
+	주소 : <input type="text" name="addr" th:value="${dto.addr}"><br>
+	<button type="submit">수정</button>
+</form>
+</body>
+</html>
