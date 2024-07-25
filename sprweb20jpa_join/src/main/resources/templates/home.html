@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>templates/home.html</title>
+</head>
+<body>
+	<div class="container">
+		<h3 style="background-color: #E1F5A9">🎶메인 페이지🎶</h3>
+		<a th:href="@{/member/mlist}">회원정보</a><br>
+		<a th:href="@{/employ/list}">직원정보</a><br>
+		<a th:href="@{/jpql}">JPQL 연습장</a><br>
+	</div>
+</body>
+</html>

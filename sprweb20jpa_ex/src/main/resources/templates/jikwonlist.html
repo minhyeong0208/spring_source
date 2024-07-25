@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>직원 목록</h3>
+<table border="1">
+	<tr>
+		<th>사번</th><th>이름</th><th>직급</th><th>부서명</th><th>관리고객</th>
+	</tr>
+	<tr th:each="jikwon:${jlist}">
+		<td th:text="${jikwon.jno}"></td>
+		<th:block>
+			<td th:if="${jikwon.hasgogek == 'O'}">
+				<a th:href="@{/gogek(jno=${jikwon.jno})}">[[${jikwon.jname}]]</a>
+			</td>
+			<td th:unless="${jikwon.hasgogek == 'O'}" th:text="${jikwon.jname}"></td>
+		</th:block>
+		<td th:text="${jikwon.jik}"></td>
+		<td th:text="${jikwon.bname}"></td>
+		<td th:text="${jikwon.hasgogek}"></td>
+	</tr>
+</table>
+</body>
+</html>
