@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+a {
+  text-decoration-line: none;
+}
+a:link {
+  color : white;
+}
+a:visited {
+  color : white;
+}
+</style>
+<title>HHHOME</title>
+</head>
+<body style="background-color: #404040">
+	<div class="container" style="text-align: center;">
+		<h1 style="color: white;">Main Page</h1>
+		<ul style="list-style: none;">
+			<li><a th:href="@{/member/mlist}">회원정보</a></li><br>
+			<li><a th:href="@{/employ/list}">직원정보</a></li><br>
+			<li><a th:href="@{/jpql}">JPQL 연습장</a></li><br>
+		</ul>
+	</div>
+	<hr>
+	<br><br>
+	<div class="container" style="text-align: center; color: white;">
+	1️⃣ 어플리케이션에서 SQL 처리용 JPA 메소드 연습<br><br>
+	2️⃣ @MVC로 회원자료 처리<br><br>
+	3️⃣ @MVC로 회원자료 처리(Join)<br><br>
+	4️⃣ JPQL 연습용 화면 작성 : AJAX<br><br>
+	</div>
+</body>
+</html>
