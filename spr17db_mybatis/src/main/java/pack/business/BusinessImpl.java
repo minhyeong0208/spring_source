@@ -20,7 +20,7 @@ public class BusinessImpl implements BusinessInter  {
 		
 		for(SangpumDto s : list) {
 			System.out.println(s.getCode() + " " + s.getSang() + " "
-							+ s.getSu() + " " + s.getDan());
+					+ s.getSu() + " " + s.getDan());
 		}
 	}
 	
