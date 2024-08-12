@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	//alert("a");
+	$("#btnSingle").click(function() {
+		$("#showData").empty();
+		$.ajax({  // ajax 처리
+			type:"get",
+			url:"list",
+			data:{
+				"name":"james"
+			},
+			dataType:"json",
+			success:function(data) {
+				let str = data.name + "<br/>";
+				str += data.skills[0] + " ";
+				str += data.skills[1];
+				//$("#showData").append(str);  // 이거도 가능!
+				$("#showData").html(str);
+			},
+			error:function() {
+				$("#showData").html("<b>에러 발생!</b>")
+			}
+		});
+	});
+	
+	$("#btnMulti").click(function() {
+		$("#showData").empty();
+		$.ajax({  // ajax 처리
+			type:"get",
+			url:"list2",
+			dataType:"json",
+			success:function(data) {
+				let str = "<table>";
+				let list = data.datas;
+				//alert(list.length);
+				
+				$(list).each(function(idx, objArr) {
+					str += "<tr>";
+					str += "<td>" + objArr["name"] + "</td>";
+					str += "<td>" + objArr.age + "</td>";
+					str += "</tr>";
+				});
+				
+				str += "</table>";
+				$("#showData").append(str);
+			},
+			error:function() {
+				$("#showData").html("<b>에러 발생!</b>")
+			}
+		});
+	});
+});
+</script>
+</head>
+<body>
+JSON 읽기<br/>
+<button id="btnSingle">한 개 읽기</button>&nbsp;
+<button id="btnMulti">여러 개 읽기</button><hr>
+<div id="showData"></div>
+</body>
+</html>

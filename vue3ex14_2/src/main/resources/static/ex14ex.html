@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <div id="app">
+        직급 입력 :
+        <input type="text" @change="input" />&nbsp;
+        <button @click="onClick">확인</button>
+        <span>{{jik}}</span>
+        <table v-if="jikdata.length > 0" border="1">
+            <tr>
+                <th>사번</th><th>이름</th><th>부서명</th><th>직급</th><th>연봉</th>
+            </tr>
+            <tr v-for="(jikwon, index) in jikdata" :key="index">
+                <td>{{jikwon.jno}}</td>
+                <td>{{jikwon.jname}}</td>
+                <td>{{jikwon.bname}}</td>
+                <td>{{jikwon.jik}}</td>
+                <td>{{jikwon.pay}}</td>
+            </tr>
+            <tr>
+                <td colspan="2">인원수 : {{jikdata.length}}</td>
+                <td colspan="3">평균 : {{average}}</td>
+            </tr>
+            
+        </table>
+    </div>
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    jik: '',
+                    inputJik: '',
+                    jikdata: [],
+                    average: 0
+                }
+            },
+            methods: {
+                input(e) {
+                    this.inputJik = e.target.value;
+                },
+                onClick() {
+                    fetch('http://localhost/jikwons/' + this.inputJik)
+                        .then(response => {
+                            if (response.ok) {
+                                return response.json();
+                            }
+                            throw new Error('AJAX Err');
+                        })
+                        .then(data => {
+                            this.jikdata = data;
+                            this.calculateAverage();
+                        })
+                        .catch(error => {
+                            console.log('직원 자료 읽기 실패', error);
+                        });
+                },
+                calculateAverage() {
+                    if (this.jikdata.length > 0) {
+                        // jikwon_pay를 숫자로 변환하여 합산
+                        let total = this.jikdata.reduce((sum, jikwon) => sum + parseInt(jikwon.pay), 0);
+                        this.average = (total / this.jikdata.length).toFixed(2);
+                    } else {
+                        this.average = 0;
+                    }
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
