@@ -9,6 +9,14 @@
 	<div>
 		<a th:href="@{/insert}">파일 추가</a> <!-- DB 삽입을 위한 insert -->
 	</div>
+	
+	<div>
+		<form th:action="@{/logout}" method="post">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			<button type="submit">로그아웃</button>
+		</form>	
+	</div>
+	
 	<table>
 		<tr>
 			<th>번호</th><th>이름</th><th>전화</th><th>직업</th><th>사진</th>
